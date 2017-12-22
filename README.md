@@ -11,6 +11,8 @@ http://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html
 2. Our implementation base
     https://github.com/milesial/Pytorch-UNet
 
-## use cases
+## use case
+```
 python3.6 train.py -e 30 -b 5 -g --dir 'e30_b5_half_eps5_lamb1'
 python3.6 predict.py --model /data/chc631/project/data/checkpoints/e30_b5_half_eps5_lamb1/CP10.pth -i red_couch.jpg -o red_couch_e30_b5_half_eps5_lamb1_CP10.mat
+```
