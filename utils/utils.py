@@ -3,7 +3,6 @@ import numpy as np
 import random
 
 
-# def resize_and_crop(pilimg, scale=0.5, final_height=None):
 def resize(pilimg, scale=0.5):
     w = pilimg.size[0]
     h = pilimg.size[1]

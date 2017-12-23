@@ -15,12 +15,8 @@ from .utils import resize, get_square, normalize
 def yield_imgs(ids, dir, suffix, scale):
     """From a list of tuples, returns the correct cropped img"""
     for id, pos in ids:
-        #import pdb; pdb.set_trace()
-        # im = resize_and_crop(Image.open(dir + id + suffix))
         im = Image.open(dir + id + suffix)
-        # import pdb; pdb.set_trace()
         im = resize(im, scale)
-        # yield get_square(im, pos)
         yield im
 
 def yield_depth_masks(ids, dir, suffix):
@@ -35,7 +31,6 @@ def yield_depth_masks(ids, dir, suffix):
             to_return.append(df.values.tolist())
         else:
             yield df.values.tolist()
-        # yield pd.Series(df.T.to_dict('list'))
     if not yield_flag:
         return to_return
 
@@ -66,7 +61,3 @@ def get_imgs_and_masks(ids, dir_img, dir_mask, scale):
 
     return zip(imgs_normalized, masks)
 
-# def get_full_img_and_mask(id, dir_img, dir_mask):
-#     im = Image.open(dir_img + id + '.jpg')
-#     mask = Image.open(dir_mask + id + '.jpg')
-#     return np.array(im), np.array(mask)
