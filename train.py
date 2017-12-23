@@ -114,7 +114,7 @@ def train_net(net, epochs=5, batch_size=10, lr=0.1, val_percent=0.05,
             with open (dir_checkpoint+"/ValidationError.txt", 'a') as outfile:
                 outfile.write(str(val_err)+ '\n')
             with open (dir_checkpoint+"/TrainingError.txt", 'a') as outfile:
-                outfile.write(str(val_err)+ '\n')
+                outfile.write(str(epoch_loss/i)+ '\n')
 
 
 
@@ -140,8 +140,10 @@ if __name__ == '__main__':
     (options, args) = parser.parse_args()
 
     if options.model == "unet4":
+        print ("using 4 layer unet")
         net = UNet4(3, 1)
     else:
+        print ("using original unet")
         net = UNet(3, 1)
 
     if options.load:
