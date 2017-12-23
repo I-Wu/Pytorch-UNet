@@ -9,8 +9,16 @@ import pandas as pd
 
 from PIL import Image
 from functools import partial
-from .utils import resize, get_square, normalize
+from .utils import resize, normalize
 
+
+def get_ids(dir):
+    """Returns a list of the ids in the directory"""
+    return (f[:-4] for f in os.listdir(dir))
+
+def split_ids(ids, n=2):
+    """Split each id in n, creating n tuples (id, k) for each id"""
+    return ((id, i) for i in range(n) for id in ids)
 
 def yield_imgs(ids, dir, suffix, scale):
     """From a list of tuples, returns the correct cropped img"""
