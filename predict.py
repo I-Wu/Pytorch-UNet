@@ -12,6 +12,7 @@ from utils import *
 import scipy.io
 
 from unet import UNet
+from unet import UNet4
 
 
 def predict_img(net, full_img, gpu=False):
@@ -44,10 +45,16 @@ if __name__ == "__main__":
     parser.add_argument('--depth-map', '-d', action='store_true',
                         help="Model based on depth-map instead of RGB",
                         default=True)
+    parser.add_argument('--unet-model4', '-u', action='store_true',
+                        help="Model is from unet4",
+                        default=False)
 
     args = parser.parse_args()
     print("Using model file : {}".format(args.model))
-    net = UNet(3, 1)
+    if not args.unet_model4:
+        net = UNet(3,1)
+    else:
+        net = UNet4(3, 1)
     if not args.cpu:
         print("Using CUDA version of the net, prepare your GPU !")
         net.cuda()
